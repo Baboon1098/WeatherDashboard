@@ -3,12 +3,41 @@ const getForecastButton = document.getElementById('getForecast');
 const cityInput = document.getElementById('city');
 const currentWeather = document.getElementById('current-weather');
 const forecastInfo = document.getElementById('forecast-info');
+const clearDataButton = document.getElementById('clearData');
+
+function getStoredCity() {
+  return localStorage.getItem('savedCity');
+}
+
+function saveCityToStorage(city) {
+  localStorage.setItem('savedCity', city);
+}
+
+function clearStoredCity() {
+  localStorage.removeItem('savedCity');
+  document.getElementById('city').value = ''; 
+  document.getElementById('current-weather').textContent = ''; 
+  document.getElementById('forecast-info').innerHTML = ''; 
+}
+
+window.onload = function () {
+  const savedCity = getStoredCity();
+  if (savedCity) {
+    document.getElementById('city').value = savedCity;
+    getForecast(savedCity);
+  }
+};
 
 getForecastButton.addEventListener('click', () => {
   const cityName = cityInput.value;
   if (cityName) {
+    saveCityToStorage(cityName);
     getForecast(cityName);
   }
+});
+
+clearDataButton.addEventListener('click', () => {
+  clearStoredCity(); 
 });
 
 function getForecast(city) {
@@ -75,4 +104,3 @@ function getForecast(city) {
       forecastInfo.innerHTML = '';
     });
 }
-  

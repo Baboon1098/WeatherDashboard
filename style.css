@@ -37,7 +37,7 @@ body {
 }
 
 .current-weather-box {
-  background-color: white;
+  background-color: gray;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -64,6 +64,7 @@ body {
   padding: 10px;
   min-width: 200px;
   text-align: center;
+  background-color: gray;
 }
 
 .weather-icon {
